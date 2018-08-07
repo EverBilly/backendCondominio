@@ -24,6 +24,10 @@ class CreateUsuariosTables extends Migration
 
             $table->integer('rol')->unsigned()->nullable()->default(null);
             $table->foreign('rol')->references('id')->on('roles')->onDelete('cascade');
+
+            $table->rememberToken();
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 
@@ -34,6 +38,6 @@ class CreateUsuariosTables extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('usuarios');
     }
 }
